@@ -111,3 +111,77 @@ console.log(obj2);	//output: {name: “sajal”, age: 26}
 let lodash = require(“lodash”);
 let objCopy = lodash.cloneDeep(originalObj);
 ```
+
+## 6. Function Statement and Function Expressions?
+
+**Function Statement:** When a function gets created using the function keyword it is called function statement.
+
+***Example:***
+```javascript
+function hello(){
+    console.log("Welcome to javascript interview prep");
+}
+```
+
+**Function Expressions:** When we assign a function to a variable it is called function expression.
+
+***Example:***
+```javascript
+let hello = function (){
+    console.log("Welcome to javascript interview prep");
+}
+```
+
+## 7. Anonymous function
+
+It is a function that does not have any name associated with it. Normally we use the function keyword before the function name to define a function in JavaScript, however, in anonymous functions in JavaScript, we use only the function keyword without the function name.
+An anonymous function is not accessible after its initial creation, it can only be accessed by a variable it is stored in as a function as a value. We can pass anonymous function as an argument in another function or return an anonymous function as value from any function.
+
+## 8. First Class Function
+
+When we assign a function as value to a variable or pass a function as an argument to other functions or return them from another function that function is called Fist class function. So the ability to use a function as values is called first class function. They are also called First class citizens.
+
+## 9. First Order Function
+
+A function that does not take another function as an argument or does not return a function as result is called first order function.
+
+## 10. Higher Order Function
+
+A function that can accept a function as an argument or return a function as result is called Higher order function.
+
+## 11. Pure Functions
+
+A function that always returns the same result if the same arguments are passed. It does not depend on any state or data change during a program execution rather it only depends on its input arguments.
+
+## 12. Event Bubbling
+
+Event bubbling in Javascript refers to the behavior where an event occurring on a nested element will also trigger the same event on its parent elements all the way up to the root element. It’s like a ripple effect, where the event spreads outwards from the original target element to its ancestors
+
+Event bubbling is a way that events spread from the element where they occur to its parent elements, and so on.
+
+For example: let’s say we have a button inside a div. If we click on the button, the onClick event will be called first on the button element, then on the div element and then on the document element.
+
+This can be useful if we want to handle an event on all of the elements in a hierarchy. But it can also be a problem if we only want to handle the event on a specific element.
+
+To prevent an event from bubbling. We can use the stopPropagation() method. This will stop the event from propagating to any of the ancestor elements.
+
+## 13. Debouncing
+
+It is a technique used to control the rate at which a function is executed. It’s particularly useful when handling events that may trigger frequently, such as scroll or keyboards inputs. Debouncing ensures that the function is called only after a certain period of inactivity since the last event occurrence.
+
+“In the debouncing technique no matter how many times user fires the event the attached function will be executed only after the specified time once the user stops firing the event”
+
+To implement debouncing we use a timer to delay the execution of the function. If the event occurs again before the timer expires, the previous timer is canceled and a new one is set. This way the function is executed only after a predefined period of silence or “debounce time”.
+
+## 14. Throttling
+
+Throttling is a technique in which no matter how many times the user fires the event the attached function will be executed only once in a given time interval.
+
+## 15. Phases of Javascript Event
+
+* Capturing Phase
+
+* Target Phase
+
+* Bubbling Phase
+
