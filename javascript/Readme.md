@@ -185,3 +185,126 @@ Throttling is a technique in which no matter how many times the user fires the e
 
 * Bubbling Phase
 
+## 16. Event Delegation
+
+Event delegation is a technique in javascript where you add an event listener to a parent element instead of individual child elements, allowing you to handle events that occur on the child elements.
+When having multiple elements handled similarly you don’t have to assign a handler for each of them. Instead you can put a single handler on their common ancestor.
+
+***Example***
+```javascript
+function ButtonList({ items }) {
+  const handleClick = (event) => {
+    if (event.target.tagName !== "BUTTON") return;
+
+
+    const id = event.target.dataset.id;
+    const name = event.target.dataset.name;
+    alert(`Clicked: ${name} (id: ${id})`);
+  };
+
+
+  return (
+    <div onClick={handleClick}>
+      {items.map((item) => (
+        <button
+          key={item.id}
+          data-id={item.id}
+          data-name={item.name}
+        >
+          {item.name}
+        </button>
+      ))}
+    </div>
+  );
+}
+```
+
+## 17. Memoization
+
+It is a technique that saves calculated results to improve a function’s efficiency. The arguments given to the function serve as the cache object’s key. If a key is present, the function return the result immediately. Otherwise the function computes the result, saves it in the cache and returns it.
+
+## 18. Ways to create function
+
+- Function Declaration
+- Function Expression
+- Arrow Function
+- Generator Function
+
+## 19. Arrow functions advantages
+
+- Allows us to write shorter function syntax.
+```javascript
+// Traditional Function
+function myFunc1() {
+    return "Hello, World!";
+}
+console.log(myFunc1());
+
+// Arrow Function
+const myFunc2 = () => {
+    return "Hello, World!";
+};
+
+console.log(myFunc2());
+```
+
+- If a function has only one statement and the statement returns a value, we can remove the brackets and the return keyword.
+```javascript
+// Traditional arrow function
+const add = (a, b) => {
+    return a + b;
+};
+
+// Shorter arrow function
+const addNumbers = (a, b) => a + b;
+
+console.log(addNumbers(10, 20)); // 30
+```
+
+- If we have only one parameter, we can skip the parentheses as well.
+```javascript
+// With parentheses
+const square = (num) => num * num;
+
+// Without parentheses
+const squareNumber = num => num * num;
+
+console.log(squareNumber(5)); // 25
+```
+
+- We can use the arrow function as a callback function.
+```javascript
+const numbers = [1, 2, 3, 4, 5];
+
+const squares = numbers.map(num => num * num);
+
+console.log(squares);
+// [1, 4, 9, 16, 25]
+```
+
+## 20. What is function currying?
+
+Function currying is a process in which we convert a function with multiple parameters to a chain of functions with a single parameter.
+
+***Example:***
+```javascript 
+//Normal function
+function sum(a, b) {
+   return a + b;
+}
+
+//curried function
+function currySum(a){
+  return function(b){
+      return a+b;
+  }
+}
+console.log(sum(1,2)); 	// 3
+console.log(currySum(1)(2));	// 3
+```
+
+We simply wrap a function inside a function, which means we are going to return a function from another function to obtain this kind of translation. The parent function takes the first provided argument and returns the function that takes the next argument and this keeps on repeating till the number of arguments ends. Hopefully, the function that receives the last argument returns the expected result.
+
+Use:
+- It helps us to create a higher-order function.
+- It reduces the chances of error in our function by dividing it into multiple smaller functions that can handle one responsibility.
