@@ -425,3 +425,28 @@ Putting all the code in a single file is impractical, especially when working in
 
 A user visiting a website may cause numerous events, such as the click event, which occurs when the user clicks someplace on a webpage. Event handling refers to the process of responding to these events.
 Event handlers are your own functions that will be triggered in response to interactions like clicking, hovering, focusing form inputs, and so on.
+
+## 35. Window object vs document object
+
+## 36. Accessor Functions
+
+ES5 introduced javascript accessors. The accessor functions get or set properties on an object Setters use the set keyword and getters use the get keyword.
+
+## 37. Shadowing
+
+When a variable declared inside a specific scope shares the same name as a variable declared in an outside scope, variable shadowing occurs. We say that the inner variable shadows the outside variable.
+
+## 38. this keyword in javascript
+
+The ‘this’ keyword in javascript refers to the current execution context or the object that a function is interacting with at a particular time. Its value is dynamically determined based on how and where a function is called, which can lead to different behaviors.
+ 
+1. **Global Context:** When ‘this’ is used in the global scope (outside any function or object), it refers to the global object, which is ‘window’ in a web browser and ‘global’ in Node.js
+
+***Example***
+```javascript
+var a = 10;
+console.log(a);        //output 10
+console.log(this.a);   //output 10
+console.log(window.a); //output 10
+```
+`Note: Here if we declare variable a using let or const then the the variable ‘a’ is not added to the global object (‘window’ in a browser) its added to a separate memory location and output will be undefined if we access using this or window keyword.`
