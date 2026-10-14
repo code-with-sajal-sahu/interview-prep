@@ -1,6 +1,6 @@
 import java.util.Scanner;
 public class Solution {
-	public static void main(String args[]) {
+	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
 		System.out.print("Enter first number: ");
 		int a = input.nextInt();

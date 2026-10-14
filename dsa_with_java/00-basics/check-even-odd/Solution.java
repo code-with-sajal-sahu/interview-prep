@@ -3,12 +3,12 @@ public class Solution {
 	public static void main(String[] args){
 		int a;
 		Scanner input = new Scanner(System.in);
-		System.out.print("Enter number: ");
+		System.out.print("Enter an integer: ");
 		a = input.nextInt();
 		if(a % 2 == 0){
-			System.out.print("Number is even");
+			System.out.print(a + " is even");
 		}else{
-			System.out.print("Number is odd");
+			System.out.print(a + " is odd");
 		}
 	}
 }

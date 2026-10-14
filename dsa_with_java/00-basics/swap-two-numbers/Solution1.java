@@ -1,7 +1,8 @@
+// Using a temporary variable to swap two numbers
 import java.util.Scanner;
 
 public class Solution1 {
-	public static void main(String args[]){
+	public static void main(String[] args){
 		int a, b, c;
 		Scanner input = new Scanner(System.in);
 		System.out.print("Enter first number: ");

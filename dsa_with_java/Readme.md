@@ -11,6 +11,7 @@ A collection of Data Structures and Algorithms problems solved using Java, inclu
 |   1 | [Add Two Numbers](./00-basics/add-two-numbers/README.md)   | Easy       |
 |   2 | [Swap Two Numbers](./00-basics/swap-two-numbers/README.md) | Easy       |
 |   3 | [Even Or Odd Number](./00-basics/check-even-odd/README.md) | Easy       |
+|   4 | [Largest of Three Integers](./00-basics/largest-of-three/README.md) | Easy       |
 
 ---
 
