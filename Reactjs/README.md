@@ -90,12 +90,12 @@ Shallow comparison checks top-level values rather than recursively comparing nes
 
 ```jsx
 const previousProps = {
-  name: "Babu",
+  name: "Sajal",
   age: 25,
 };
 
 const nextProps = {
-  name: "Babu",
+  name: "Sajal",
   age: 25,
 };
 ```
@@ -106,11 +106,11 @@ The corresponding top-level values are equal, so these props are shallowly equal
 
 ```jsx
 const previousProps = {
-  user: { name: "Babu" },
+  user: { name: "Sajal" },
 };
 
 const nextProps = {
-  user: { name: "Babu" },
+  user: { name: "Sajal" },
 };
 ```
 
@@ -491,7 +491,7 @@ class UserProfile extends React.Component {
     super(props);
 
     this.state = {
-      name: "Babu",
+      name: "Sajal",
     };
   }
 
