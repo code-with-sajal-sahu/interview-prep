@@ -1780,4 +1780,308 @@ Yes. Their bindings are created when the scope is instantiated, but they remain 
 Undefined means a variable has been declared and initialized with the default value `undefined`, but not defined means the variable cannot be found in the accessible scope, and accessing it results in a `ReferenceError`.
 
 
-## 44. Execution Context?
+## 44. Execution Context in JavaScript?
+
+An **Execution Context** is the environment in which JavaScript code is evaluated and executed.
+
+JavaScript creates an execution context to manage variables, functions, scope, and the execution of code.
+
+Every JavaScript program runs inside an execution context.
+
+An execution context has two main components:
+
+1. **Memory Component (Variable Environment):** Stores variables and function declarations.
+2. **Code Component (Thread of Execution):** Executes code one line at a time.
+
+### 1. Components of Execution Context
+
+#### A. Memory Component (Variable Environment)
+
+The memory component stores information about variables and functions.
+
+- Variables declared using `var` are initialized with `undefined`.
+- Variables declared using `let` and `const` are created but remain uninitialized until their declarations are evaluated.
+- Function declarations are stored with their function definitions.
+
+**Example:**
+
+```javascript
+var name = "Rahul";
+
+function greet() {
+    var message = "Hello";
+    console.log(message);
+}
+```
+
+During the creation phase, JavaScript sets up the bindings for variables and functions in the execution context.
+
+#### B. Code Component (Thread of Execution)
+
+The code component is responsible for executing JavaScript statements.
+
+- JavaScript executes synchronous code sequentially.
+- Each statement is evaluated according to the execution flow.
+- When a function is called, a new function execution context is created.
+
+JavaScript is generally described as a single-threaded language because synchronous JavaScript code executes on one call stack at a time.
+
+### 2. Types of Execution Context
+
+JavaScript primarily creates two types of execution contexts:
+
+#### A. Global Execution Context (GEC)
+
+The Global Execution Context is created when JavaScript starts executing a script.
+
+**Key points:**
+
+- It is the default execution context.
+- It is created once for a given script execution environment.
+- It sets up the global environment.
+- In a browser classic script, the global `this` value refers to `window`.
+- In an ES module, top-level `this` is `undefined`.
+
+**Example:**
+
+```javascript
+var a = 10;
+
+function greet() {
+    console.log("Hello");
+}
+
+console.log(a);
+greet();
+```
+
+When this code executes, JavaScript first creates the Global Execution Context.
+
+#### B. Function Execution Context (FEC)
+
+A Function Execution Context is created whenever a function is invoked.
+
+Each function call gets its own execution context with its own local bindings and execution state.
+
+**Example:**
+
+```javascript
+var a = 10;
+
+function multiply() {
+    var b = 20;
+    console.log(a * b);
+}
+
+multiply();
+```
+
+**Explanation:**
+
+1. JavaScript creates the Global Execution Context.
+2. It initializes the global bindings.
+3. When `multiply()` is called, JavaScript creates a Function Execution Context.
+4. The local variable `b` is available inside that function context.
+5. After the function completes, its execution context is removed from the call stack.
+
+### 3. Phases of Execution Context
+
+An execution context is commonly explained in two phases:
+
+#### A. Creation Phase (Memory Creation Phase)
+
+During this phase, JavaScript prepares the execution environment before executing the statements.
+
+It:
+
+1. Creates bindings for variables and functions.
+2. Initializes `var` declarations with `undefined`.
+3. Creates uninitialized bindings for `let` and `const`.
+4. Makes function declarations available with their definitions.
+5. Sets up the relevant scope and `this` binding.
+
+**Example:**
+
+```javascript
+console.log(a);
+greet();
+
+var a = 10;
+
+function greet() {
+    console.log("Hello JavaScript");
+}
+```
+
+During the creation phase:
+
+| Identifier | Initial state |
+|---|---|
+| `a` | `undefined` |
+| `greet` | Function definition |
+
+#### B. Execution Phase (Code Execution Phase)
+
+During this phase, JavaScript executes the code statement by statement.
+
+- Values are assigned to variables.
+- Expressions are evaluated.
+- Functions are invoked.
+- New execution contexts are created when functions are called.
+
+**Example:**
+
+```javascript
+var a = 10;
+
+function add() {
+    var b = 20;
+    console.log(a + b);
+}
+
+add();
+```
+
+**Output:**
+
+```text
+30
+```
+
+**Explanation:**
+
+1. Global Execution Context is created.
+2. `a` is initialized with `undefined` during creation.
+3. `add` is stored as a function declaration.
+4. During execution, `a` is assigned `10`.
+5. `add()` is invoked, creating a Function Execution Context.
+6. `b` is assigned `20`.
+7. `a + b` evaluates to `30`.
+8. The function completes, and its execution context is popped from the call stack.
+
+### 4. What Is the Call Stack?
+
+The Call Stack is a Last In, First Out (LIFO) data structure used by JavaScript to keep track of active execution contexts.
+
+It manages which function is currently executing and where execution should resume after a function finishes.
+
+**Example:**
+
+```javascript
+function first() {
+    console.log("First");
+
+    second();
+}
+
+function second() {
+    console.log("Second");
+
+    third();
+}
+
+function third() {
+    console.log("Third");
+}
+
+first();
+```
+
+**Output:**
+
+```text
+First
+Second
+Third
+```
+
+**Call Stack Execution:**
+
+```text
+Step 1: Global Execution Context
+
+Step 2: first() is called
+
+Step 3: second() is called
+
+Step 4: third() is called
+
+Step 5: third() completes and is removed
+
+Step 6: second() completes and is removed
+
+Step 7: first() completes and is removed
+
+Step 8: Global Execution Context remains
+```
+
+The stack grows as functions are called and shrinks as functions return.
+
+### 5. Execution Context vs Call Stack
+
+| Execution Context | Call Stack |
+|---|---|
+| Environment where JavaScript code executes | Data structure that manages active execution contexts |
+| Contains execution-related information | Tracks the order of execution |
+| Created for global code and function invocations | Pushes and pops execution contexts |
+| Manages variables, scope, and `this` | Follows LIFO order |
+
+### 6. Important Interview Follow-up Questions
+
+**Q1. When is the Global Execution Context created?**
+
+It is created when JavaScript begins executing a script.
+
+**Q2. How many Function Execution Contexts are created when a function is called multiple times?**
+
+A new Function Execution Context is created for every function invocation.
+
+**Q3. What happens when a function execution is completed?**
+
+Its execution context is removed from the call stack, and execution resumes in the previous context.
+
+**Q4. What is the difference between the creation phase and execution phase?**
+
+- Creation Phase: Sets up bindings, scope, and other execution-related information.
+- Execution Phase: Executes statements and evaluates expressions.
+
+**Q5. Is JavaScript single-threaded?**
+
+JavaScript synchronous execution typically runs on a single thread using a call stack. Browser and Node.js runtimes provide additional mechanisms for handling asynchronous operations.
+
+**Q6. What happens when a function calls itself?**
+
+A new Function Execution Context is created for every recursive invocation and pushed onto the call stack. Excessive recursion can cause a stack overflow.
+
+**Q7. What is a Stack Overflow?**
+
+A stack overflow occurs when the call stack exceeds its available capacity, commonly due to excessive or infinite recursion.
+
+Example:
+
+```javascript
+function callMe() {
+    callMe();
+}
+
+callMe();
+```
+
+This eventually results in a `RangeError: Maximum call stack size exceeded` in typical JavaScript environments.
+
+---
+
+### 7. Quick Revision
+
+- Execution Context is the environment where JavaScript code is evaluated and executed.
+- It has two commonly described components: Memory Component and Code Component.
+- Global Execution Context is created for script execution.
+- Function Execution Context is created whenever a function is invoked.
+- Creation Phase sets up bindings and execution-related information.
+- Execution Phase executes statements.
+- Call Stack manages active execution contexts using LIFO order.
+- Every function invocation gets its own execution context.
+
+**One-Line Interview Answer:**
+
+An Execution Context is the environment in which JavaScript code is executed. It manages variables, functions, scope, and execution flow. It is commonly explained using two components: the Memory Component (Variable Environment) and the Code Component (Thread of Execution).
